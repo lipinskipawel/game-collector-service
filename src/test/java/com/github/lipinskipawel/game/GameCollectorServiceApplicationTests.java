@@ -1,4 +1,4 @@
-package com.github.lipinskipawel;
+package com.github.lipinskipawel.game;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: openjdk:12-jdk
+    steps:
+      - checkout
+      - run: yum -y install wget
+      - run: wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+      - run: yum -y install apache-maven
+      - run: mvn clean package
+  deploy:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: Deploy Master to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
