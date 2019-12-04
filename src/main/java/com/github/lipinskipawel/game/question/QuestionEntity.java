@@ -6,23 +6,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-/**
- * This class is an API.
- */
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "questions")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @EqualsAndHashCode
-public final class Question {
+final class QuestionEntity {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     @NonNull
     private String question;
 
     @NonNull
-    private String[] choices;
+    private String choices;
 
     @NonNull
-    private String[] answers;
+    private String answers;
 
     @NonNull
     private long time;

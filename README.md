@@ -7,4 +7,4 @@ This repository is for LAN-Game game. It will expose specific API only for LAN-G
 - default psql user -> postgres
 - default psql db   -> postgres
 
-https://game-collector-service.herokuapp.com/book/all
+https://game-collector-service.herokuapp.com/question/all
