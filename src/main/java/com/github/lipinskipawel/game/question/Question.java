@@ -16,6 +16,12 @@ import lombok.NonNull;
 public final class Question {
 
     @NonNull
+    private String uniqIdentifier;
+
+    @NonNull
+    private String module;
+
+    @NonNull
     private String question;
 
     @NonNull

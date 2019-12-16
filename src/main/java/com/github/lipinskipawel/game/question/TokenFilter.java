@@ -1,5 +1,6 @@
 package com.github.lipinskipawel.game.question;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Slf4j
 @Component
 final class TokenFilter extends OncePerRequestFilter {
 
@@ -26,8 +28,10 @@ final class TokenFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         final var token = request.getHeader(tokenName);
         if (token != null && token.equals(tokenValue)) {
+            log.info("Continue processing request");
             filterChain.doFilter(request, response);
         }
+        log.info("Request blocked");
         response.setStatus(401);
     }
 }

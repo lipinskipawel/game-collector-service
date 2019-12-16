@@ -24,6 +24,12 @@ final class QuestionEntity {
     private Long id;
 
     @NonNull
+    private String uniqIdentifier;
+
+    @NonNull
+    private String module;
+
+    @NonNull
     private String question;
 
     @NonNull
